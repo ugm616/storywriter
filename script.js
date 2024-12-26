@@ -245,31 +245,39 @@ document.addEventListener('DOMContentLoaded', () => {
             const startNode = document.getElementById(conn.start);
             const endNode = document.getElementById(conn.end);
             if (startNode && endNode) {
-                const startRect = startNode.getBoundingClientRect();
-                const endRect = endNode.getBoundingClientRect();
-                const startPoint = {
-                    x: startRect.left + startRect.width / 2,
-                    y: startRect.top + startRect.height / 2
-                };
-                const endPoint = {
-                    x: endRect.left + endRect.width / 2,
-                    y: endRect.top + endRect.height / 2
-                };
-                
+                const startPoint = getConnectionPoint(startNode, startConnectionPoint.classList[1]);
+                const endPoint = getConnectionPoint(endNode, endConnectionPoint.classList[1]);
+
                 const connector = document.createElement('div');
                 connector.classList.add('connector');
-                
+
                 const length = Math.sqrt(Math.pow(endPoint.x - startPoint.x, 2) + Math.pow(endPoint.y - startPoint.y, 2));
                 const angle = Math.atan2(endPoint.y - startPoint.y, endPoint.x - startPoint.x);
-                
+
                 connector.style.width = `${length}px`;
                 connector.style.left = `${startPoint.x}px`;
                 connector.style.top = `${startPoint.y}px`;
                 connector.style.transform = `rotate(${angle}rad)`;
-                
+
                 canvas.appendChild(connector);
             }
         });
+    }
+
+    function getConnectionPoint(node, position) {
+        const rect = node.getBoundingClientRect();
+        switch (position) {
+            case 'top':
+                return { x: rect.left + rect.width / 2, y: rect.top };
+            case 'right':
+                return { x: rect.right, y: rect.top + rect.height / 2 };
+            case 'bottom':
+                return { x: rect.left + rect.width / 2, y: rect.bottom };
+            case 'left':
+                return { x: rect.left, y: rect.top + rect.height / 2 };
+            default:
+                return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+        }
     }
 
     function addScene() {
@@ -531,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateConnectors();
     }
 
-    function zoom(e) {
+function zoom(e) {
         e.preventDefault();
         const delta = e.deltaY;
         const scaleChange = delta > 0 ? 0.9 : 1.1;
