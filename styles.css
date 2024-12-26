@@ -1,0 +1,226 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+#editor {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+}
+
+#top-menu {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    background-color: #111;
+    z-index: 10;
+}
+
+#top-menu > * {
+    margin-right: 10px;
+}
+
+#canvas-container {
+    grid-column: 1;
+    grid-row: 2;
+    overflow: hidden;
+    position: relative;
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    background-image: 
+        linear-gradient(to right, rgba(0, 128, 128, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 128, 128, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    transform-origin: 0 0;
+}
+
+#node-options {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 10px;
+    background-color: #111;
+    z-index: 10;
+}
+
+#side-panel {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    background-color: #111;
+    padding: 10px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+button, .dropbtn {
+    background-color: #008080;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    height: 30px;
+    min-width: 100px;
+}
+
+button:hover, .dropbtn:hover {
+    background-color: #006666;
+}
+
+.node {
+    position: absolute;
+    width: 120px;
+    height: 80px;
+    background-color: #222;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: move;
+    user-select: none;
+    font-size: 12px;
+    z-index: 10;
+}
+
+.connector {
+    position: absolute;
+    height: 2px;
+    background-color: #008080;
+    transform-origin: 0 50%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #006666;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #222;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #008080;
+    width: 50%;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal input, .modal button {
+    margin: 10px 0;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal button {
+    background-color: #008080;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.modal button:hover {
+    background-color: #006666;
+}
+
+.connection-point {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #008080;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 15;
+}
+
+.connection-point.top { top: -5px; left: 50%; transform: translateX(-50%); }
+.connection-point.right { top: 50%; right: -5px; transform: translateY(-50%); }
+.connection-point.bottom { bottom: -5px; left: 50%; transform: translateX(-50%); }
+.connection-point.left { top: 50%; left: -5px; transform: translateY(-50%); }
+
+.active-toggle {
+    background-color: #FF0000 !important;
+}
+
+.sidebar-item {
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sidebar-item:hover {
+    background-color: #2a2a2a;
+}
+
+.sidebar-item.selected {
+    background-color: #008080;
+    color: white;
+}

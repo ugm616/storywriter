@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Narrative Editor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="editor">
+        <div id="top-menu">
+            <div class="dropdown">
+                <button class="dropbtn">Narrative Nodes</button>
+                <div class="dropdown-content">
+                    <a href="#" data-node-type="TXT">Text</a>
+                    <a href="#" data-node-type="TIK">TikTok</a>
+                    <a href="#" data-node-type="YOU">YouTube</a>
+                    <a href="#" data-node-type="RUM">Rumble</a>
+                    <a href="#" data-node-type="AUD">Audio</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Additional Nodes</button>
+                <div class="dropdown-content">
+                    <a href="#" data-node-type="ENC">Encounter</a>
+                    <a href="#" data-node-type="CHN">Choice</a>
+                    <a href="#" data-node-type="INV">Inventory</a>
+                    <a href="#" data-node-type="BEG">Begin</a>
+                    <a href="#" data-node-type="END">End</a>
+                    <a href="#" data-node-type="SCN">Scene Change</a>
+                </div>
+            </div>
+            <button id="add-connector">Add Connector</button>
+            <button id="add-scene">Add Scene</button>
+            <button id="add-entity">Add Entity</button>
+            <button id="add-item">Add Item</button>
+            <button id="save-story">Save Story</button>
+            <button id="load-story">Load Story</button>
+            <button id="test-story">Test Story</button>
+            <button id="delete">Delete</button>
+        </div>
+        <div id="canvas-container">
+            <div id="canvas"></div>
+        </div>
+        <div id="node-options"></div>
+        <div id="side-panel">
+            <div id="scenes-list">
+                <h3>Scenes</h3>
+                <div id="scenes-container"></div>
+            </div>
+            <div id="entities-list">
+                <h3>Entities</h3>
+                <div id="entities-container"></div>
+            </div>
+            <div id="items-list">
+                <h3>Items</h3>
+                <div id="items-container"></div>
+            </div>
+        </div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
